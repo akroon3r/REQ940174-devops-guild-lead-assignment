@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: API-Dev
-      url: https://gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca/
+      url: https://gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca/api
     needs: [ DEV-deploy ]
     steps:
     

@@ -16,7 +16,7 @@ objects:
     annotations:
       openshift.io/host.generated: 'true'
   spec:
-    host: gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca
+    host: gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca/api
     to:
       kind: Service
       name: gla-api
