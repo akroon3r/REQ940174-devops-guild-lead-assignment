@@ -8,11 +8,11 @@ objects:
 - kind: Service
   apiVersion: v1
   metadata:
-    name: ${APPLICATION_NAME}
-    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    name: gla-api
+    namespace: ec1236-dev
     labels:
-      app: ${APPLICATION_NAME}
-      app.kubernetes.io/part-of: gla
+      app: gla-api
+      app.kubernetes.io/part-of: gla-api
     annotations:
       openshift.io/generated-by: OpenShiftWebConsole
   spec:
@@ -28,11 +28,8 @@ objects:
     ipFamilyPolicy: SingleStack
     sessionAffinity: None
     selector:
-      app: ${APPLICATION_NAME}
-      deploymentconfig: {APPLICATION_NAME}
-  status:
-    loadBalancer: {}
-
+      app: gla-api
+      deploymentconfig: gla-api
 
 parameters:
   - description: Application Name

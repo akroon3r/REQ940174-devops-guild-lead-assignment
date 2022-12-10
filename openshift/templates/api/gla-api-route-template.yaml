@@ -8,18 +8,18 @@ objects:
 - kind: Route
   apiVersion: route.openshift.io/v1
   metadata:
-    name: ${APPLICATION_NAME}
-    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    name: gla-api
+    namespace: ec1236-dev
     labels:
-      app: ${APPLICATION_NAME}
+      app: gla-api
       app.kubernetes.io/part-of: gla
     annotations:
       openshift.io/host.generated: 'true'
   spec:
-    host: ${APPLICATION_NAME}-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca
+    host: gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca
     to:
       kind: Service
-      name: ${APPLICATION_NAME}
+      name: gla-api
       weight: 100
     port:
       targetPort: 3000-tcp
