@@ -109,16 +109,16 @@ jobs:
         uses: redhat-actions/oc-login@v1
         env:
           OPENSHIFT_USER: github-actions
-          OPENSHIFT_NAMESPACE: b996e6-dev
+          OPENSHIFT_NAMESPACE: ec1236-dev
         with: 
           openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT4_DEV_SA_PASSWORD }}
-          namespace: b996e6-dev
+          namespace: ec1236-dev
             
       # Use application health helper script to monitor readiness/liveness probe response post deployment  
       - name: Health Check DEV deployment
         env:
           NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
-          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}-v2"
+          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
         run: |
           ./.github/helpers/application-health.sh
