@@ -1,0 +1,34 @@
+name: Github Environment - ROLLBACK Guild Lead Assignment API
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  GLA-API-Build-Tag-Push:
+    environment: API-Dev
+    runs-on: ubuntu-latest
+    steps:
+    
+      # Checkout EQ940174-devops-guild-lead-assignment Github Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Login to Openshift Silver Cluster
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: github-actions
+          OPENSHIFT_NAMESPACE: ec1236-dev
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT4_DEV_SA_PASSWORD }}
+          namespace: ec1236-dev
+            
+      # Envoke rollback script
+      - name: Rollback API to previous successful deployment
+        env:
+          NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
+          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}"
+        run: |
+          ./.github/helpers/rollback.sh
