@@ -57,6 +57,26 @@ objects:
       spec:
         containers:
           - name: ${APPLICATION_NAME}
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 3000
+                scheme: HTTP
+              initialDelaySeconds: 30
+              timeoutSeconds: 1
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 3
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 3000
+                scheme: HTTP
+              initialDelaySeconds: 40
+              timeoutSeconds: 1
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 3
             image: >-
               image-registry.openshift-image-registry.svc:5000/ec1236-tools/gla-api@sha256:5960517951cdcc3c4a322cf4a8ce759638a7dcebccefccb6f2baf7f90d552cf5
             ports:
