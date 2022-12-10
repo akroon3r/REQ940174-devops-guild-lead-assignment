@@ -12,4 +12,4 @@ services:
   
   networks:
     gla-network:
-      driver: 'bridge'
+      driver: "bridge"
