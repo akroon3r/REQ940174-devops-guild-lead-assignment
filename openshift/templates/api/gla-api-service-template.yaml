@@ -1,0 +1,57 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+labels:
+  template: ${APPLICATION_NAME}-template
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: ${APPLICATION_NAME}
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      app: ${APPLICATION_NAME}
+      app.kubernetes.io/part-of: gla
+    annotations:
+      openshift.io/generated-by: OpenShiftWebConsole
+  spec:
+    ipFamilies:
+      - IPv4
+    ports:
+      - name: 3000-tcp
+        protocol: TCP
+        port: 3000
+        targetPort: 3000
+    internalTrafficPolicy: Cluster
+    type: ClusterIP
+    ipFamilyPolicy: SingleStack
+    sessionAffinity: None
+    selector:
+      app: ${APPLICATION_NAME}
+      deploymentconfig: {APPLICATION_NAME}
+  status:
+    loadBalancer: {}
+
+
+parameters:
+  - description: Application Name
+    displayName: AppName
+    name: APPLICATION_NAME
+    required: true
+    value: gla-api
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: ec1236
+  - description: Imagestream
+    displayName: Imagestream
+    name: IMAGESTREAM
+    required: true
+    value: 'gla-api'
