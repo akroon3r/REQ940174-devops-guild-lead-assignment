@@ -47,7 +47,7 @@ jobs:
       # Tag Docker Image built with latest
       - name: Docker Tag Version
         run: |
-          docker tag REQ940174-devops-guild-lead-assignment_guild-lead-assignment-api image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/gla-api:latest
+          docker tag req940174-devops-guild-lead-assignment_guild-lead-assignment-api image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/gla-api:latest
       # Push docker image to BC Gov Repository  
       - name: Docker Push Version
         run: |
