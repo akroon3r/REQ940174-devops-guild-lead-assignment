@@ -6,10 +6,10 @@ services:
       context: .
       dockerfile: ./src/guild-lead-assignment-api
     networks:
-      gla-network
+      - gla-network
     ports:
       - 3000
-  
+
 networks:
   gla-network:
     driver: "bridge"
