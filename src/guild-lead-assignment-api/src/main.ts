@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Guild Lead Assignment API')
-    .setDescription('Guild Lead Assignment API Description')
+    .setDescription('Sample API')
     .setVersion('1.0')
     .addTag('Guild Lead Assignment API')
     .build();
