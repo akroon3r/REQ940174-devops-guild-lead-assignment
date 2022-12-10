@@ -91,3 +91,34 @@ jobs:
           IMAGESTREAM: "gla-api"
         run: |
           ./.github/helpers/deploy.sh 
+  
+  DEV-health-check:
+    runs-on: ubuntu-latest
+    environment:
+      name: API-Dev
+      url: https://gla-api-ec1236-dev.apps.silver.devops.gov.bc.ca/
+    needs: [ DEV-deploy ]
+    steps:
+    
+      # Checkout Repository
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Login to Openshift Silver Cluster
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: github-actions
+          OPENSHIFT_NAMESPACE: b996e6-dev
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT4_SERVER_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT4_DEV_SA_PASSWORD }}
+          namespace: b996e6-dev
+            
+      # Use application health helper script to monitor readiness/liveness probe response post deployment  
+      - name: Health Check DEV deployment
+        env:
+          NAMESPACE: "${{ secrets.OPENSHIFT_DEV_NAMESPACE }}"
+          APPLICATION_NAME: "${{ secrets.APPLICATION_NAME }}-v2"
+        run: |
+          ./.github/helpers/application-health.sh
