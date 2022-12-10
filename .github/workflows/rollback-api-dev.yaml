@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   
 jobs:
-  GLA-API-Build-Tag-Push:
+  GLA-API-Rollback:
     environment: API-Dev
     runs-on: ubuntu-latest
     steps:
     
-      # Checkout EQ940174-devops-guild-lead-assignment Github Repository
+      # Checkout REQ940174-devops-guild-lead-assignment Github Repository
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
