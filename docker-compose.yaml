@@ -10,6 +10,6 @@ services:
     ports:
       - 3000
   
-  networks:
-    gla-network:
-      driver: "bridge"
+networks:
+  gla-network:
+    driver: "bridge"
