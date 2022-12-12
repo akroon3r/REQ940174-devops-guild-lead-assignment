@@ -20,7 +20,7 @@ The deployment process must be completed by some form of automation via pipeline
 
 ## Project Description
 
-This assignment represents a basic deployment that CITZ IMB develops would initialize,
+This assignment represents a basic deployment that CITZ IMB developers would initialize,
 deploy and develop against to solve specific business requirements.
 
 The API found in this repository is a NestJS API, one of the frameworks that CITZ IMB
