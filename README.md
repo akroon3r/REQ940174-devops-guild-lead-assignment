@@ -45,7 +45,7 @@ outlined in the project description above to see the API live and serving traffi
 ### Deployment Method and Configuration
 
 This project utilizes both Github Actions and Github Environments in order to deploy the
-containerized solution into the BC Government host Openshift cluster. The actions
+containerized solution into the BC Government hosted Openshift cluster. The actions
 are written in YAML format and can be found in the ```.github/workflows``` directory 
 within the repository. The ```.github/helpers``` directory houses three simple
 shell scripts that are used within the actions to do the following:
